@@ -32,9 +32,7 @@ const S3LambdaFunction = new NodejsFunction(this, "SampleFunction", {
   code:lambda.Code.fromAsset(path.join(__dirname,"../lambdas")),
   layers: [lambdaLayer],
   environment: {
-    NODE_OPTIONS: '--experimental-modules' ,
     TABLE_NAME: ResultsTable.tableName 
-
   }
 }
 );
