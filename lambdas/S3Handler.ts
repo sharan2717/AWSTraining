@@ -1,8 +1,6 @@
 import * as AWS from 'aws-sdk';
-import { DeleteItemOutput, GetItemInput, PutItemInput, PutItemInputAttributeMap } from 'aws-sdk/clients/dynamodb';
-import { S3EventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
+import {  PutItemInput, PutItemInputAttributeMap } from 'aws-sdk/clients/dynamodb';
 import { S3Event, S3Handler } from 'aws-lambda';
-import {aws_s3 as s3 } from 'aws-cdk-lib';
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 export const handler=async (event:S3Event)=>{
@@ -10,10 +8,10 @@ export const handler=async (event:S3Event)=>{
 
     const bucketName = event.Records[0].s3.bucket.name;
     const s3ObjectKey = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));
-   let   csvContent :string= ""
+   let csvContent :string= ""
     const command = new GetObjectCommand({
-        Bucket: "test-bucket",
-        Key: "hello-s3.txt",
+        Bucket: bucketName,
+        Key:s3ObjectKey,
       });
     try {
         const response = await client.send(command);

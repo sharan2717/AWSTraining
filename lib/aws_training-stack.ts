@@ -16,14 +16,7 @@ import { Asset } from 'aws-cdk-lib/aws-s3-assets';
 export class AwsTrainingStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-
     
-const csvFilePath = "C:/Users/vsharan/Desktop/AWS/AWSTraining/marks/Marks.csv";
-const csvFile = new Asset(this, "MyCsv", {
-  path: csvFilePath,
-});
-
-
 const lambdaLayer = new lambda.LayerVersion(this, 'SampleLayer', {
   code: lambda.Code.fromAsset('layer'),
   compatibleRuntimes: [lambda.Runtime.NODEJS_18_X, lambda.Runtime.NODEJS_16_X],
@@ -61,8 +54,10 @@ const MarksCSVS3Bucket = new aws_s3.Bucket(this,"SampleBucket",{
 MarksCSVS3Bucket.addEventNotification(s3.EventType.OBJECT_CREATED,new s3n.LambdaDestination(S3LambdaFunction))
 
 
+const csvFilePath = "C:/Users/vsharan/Desktop/AWS/AWSTraining/marks/Marks.csv";
+
 new s3deploy.BucketDeployment(this, "DeployCsv", {
-  sources: [s3deploy.Source.asset("C:/Users/vsharan/Desktop/AWS/AWSTraining/marks")],
+  sources: [s3deploy.Source.asset(csvFilePath)],
   destinationBucket: MarksCSVS3Bucket
 });
 
