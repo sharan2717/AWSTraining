@@ -47,20 +47,5 @@ MarksCSVS3Bucket.grantRead(S3LambdaFunction);
 
 MarksCSVS3Bucket.addEventNotification(s3.EventType.OBJECT_CREATED,new s3n.LambdaDestination(S3LambdaFunction))
 
-
-
-new s3deploy.BucketDeployment(this, "DeployCsv", {
-  sources: [s3deploy.Source.asset("C:/Users/vsharan/Desktop/AWS/AWSTraining/marks")],
-  destinationBucket: MarksCSVS3Bucket
-});
-
-
-
-
-
-
-
-
-
   }
 }
