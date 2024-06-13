@@ -40,7 +40,7 @@ export const handler: S3Handler = async (event: S3Event) => {
   }
 
   await calculateresults(csvContent);
-
+ 
 };
 
 const calculateGrade = (mark: number) => {
