@@ -1,4 +1,3 @@
-import { PutItemInputAttributeMap } from "aws-sdk/clients/dynamodb";
 import { S3Event, S3Handler } from "aws-lambda";
 import {
   GetObjectCommand,
@@ -128,9 +127,7 @@ async function AWSaddDocument(data: any) {
   };
   const batchcommand = new BatchWriteItemCommand(params);
   try {
-    console.log("here")
-    const response = await docClient.send(batchcommand);
-    console.log("here attr",response.ItemCollectionMetrics);
+    await docClient.send(batchcommand);
   } catch (error) {
     console.error("Error adding document:", error);
     throw error;
