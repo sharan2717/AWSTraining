@@ -7,10 +7,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Sample
-        run: npm install
-      - name : deploy cdk
-        run : cdk deploy
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
