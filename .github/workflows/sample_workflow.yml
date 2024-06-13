@@ -32,7 +32,7 @@ jobs:
 
       - name: Install AWS CDK
         run: npm install -g aws-cdk
-      - name: Deploy CDK stack
+      - name: bootstrap CDK stack
         run: cdk bootstrap --require-approval never
       - name: Deploy CDK stack
         run: cdk deploy --require-approval never
