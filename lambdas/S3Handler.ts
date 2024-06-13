@@ -25,7 +25,6 @@ export const handler: S3Handler = async (event: S3Event) => {
     const response: GetObjectCommandOutput = await client.send(command);
     const csvStream = parse({ delimiter: "," });
     if (response.Body instanceof Readable) {
-      console.log("here");
       const chunks = [];
       for await (const chunk of response.Body) {
         chunks.push(chunk);
@@ -36,6 +35,7 @@ export const handler: S3Handler = async (event: S3Event) => {
     }
   } catch (error) {
     console.error("Error getting object from S3:", error);
+    throw error;
   }
 
   await calculateresults(csvContent);
