@@ -9,3 +9,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Sample
         run: npm install
+      - name : deploy cdk
+        run : cdk deploy
