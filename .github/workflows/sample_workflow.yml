@@ -1,10 +1,11 @@
-name : demo-workflow
+name: demo-workflow
+
 on: [push]
+
 jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/chac@v4
-         - name: sample 
-         - run: echo  "hi"
-       
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sample
+        run: echo "hi"
