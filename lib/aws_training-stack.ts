@@ -17,7 +17,7 @@ const lambdaLayer = new lambda.LayerVersion(this, 'SampleLayer', {
 });
 
 
-const ResultsTable = new dynamodb.TableV2(this,"orders",{
+const ResultsTable = new dynamodb.TableV2(this,"Results",{
   tableName : "Results",
    partitionKey :{
      name : "Name",
