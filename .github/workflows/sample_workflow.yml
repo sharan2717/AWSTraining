@@ -29,9 +29,14 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1  # Specify your AWS region
-
       - name: Install AWS CDK
         run: npm install -g aws-cdk
+      - name: Move directory to layer
+        run: cd layer/nodejs
+      - name : Install dependencies for layers
+        run : npm install
+      - name : Move back to project directory 
+        run : cd ../..
       - name: bootstrap CDK stack
         run: cdk bootstrap --require-approval never
       - name: Deploy CDK stack
