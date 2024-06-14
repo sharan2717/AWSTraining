@@ -34,7 +34,7 @@ export const handler: S3Handler = async (event: S3Event) => {
       console.log("Response Body is not a Readable stream:", response.Body);
     }
   } catch (error) {
-    console.error("Error getting object from S3:", error);
+    console.error("Error getting object from S3: ", error);
     throw error;
   }
 
